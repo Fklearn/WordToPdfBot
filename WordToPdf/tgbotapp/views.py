@@ -53,8 +53,6 @@ def received_document(update: Update, context: CallbackContext):
     if state['state'] == 2:
         if file.endswith('.docx'):
             doc = aw.Document(f'files/{file}')
-            if (doc.watermark.type == aw.WatermarkType.TEXT):
-                doc.watermark.remove()
             doc.save(f'files/{file}.pdf')
             context.bot.sendDocument(document=open(f'files/{file}.pdf', 'rb'), chat_id=user.id)
 
